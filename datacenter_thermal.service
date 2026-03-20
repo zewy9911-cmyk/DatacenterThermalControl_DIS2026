@@ -1,0 +1,22 @@
+[Unit]
+Description=Datacenter Thermal Control System
+Documentation=file:///home/pi/datacenter_thermal/docs/documentation_bg.md
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/datacenter_thermal
+ExecStart=/home/pi/datacenter_thermal/venv/bin/python main.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# Allow access to GPIO and serial port
+SupplementaryGroups=gpio dialout i2c
+
+[Install]
+WantedBy=multi-user.target
+

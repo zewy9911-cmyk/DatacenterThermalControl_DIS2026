@@ -1,0 +1,33 @@
+# CIRCUITPY/settings.toml
+# ─────────────────────────────────────────────────────────────────────────────
+# WIO Terminal  —  Datacenter Thermal Control
+# Copy this file to the ROOT of your CIRCUITPY drive as  settings.toml
+# and fill in your WiFi credentials and server address.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# WiFi network
+WIFI_SSID     = "YourNetworkName"
+WIFI_PASSWORD = "YourPassword"
+
+# Raspberry Pi or Windows PC running main.py.
+# Windows Mobile Hotspot commonly exposes the host as 192.168.137.1
+# Find it with: ipconfig
+SERVER_HOST = "192.168.137.1"
+SERVER_PORT = "8000"
+
+# Optional WiFi tuning for unstable hotspots (defaults shown)
+HTTP_TIMEOUT          = "3.0"
+PUSH_INTERVAL         = "2.0"
+WIFI_RETRY_S          = "8.0"
+WIFI_DHCP_WAIT_S      = "10.0"
+WIFI_CONNECT_ATTEMPTS = "3"
+WIFI_FAIL_BEFORE_RESET = "3"
+WIFI_POWERUP_WAIT_S   = "1.8"
+WIFI_READY_WAIT_S     = "1.5"
+
+# RTL8720DN SPI/UART mode select:
+#   "auto" = try both polarities
+#   "high" = force RTL_DIR = 1
+#   "low"  = force RTL_DIR = 0
+RTL_SPI_MODE = "auto"
+

@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900"
+     style="background:#0d1117;font-family:Segoe UI,system-ui,sans-serif">
+<defs>
+  <!-- Arrowhead markers -->
+  <marker id="arr-blue"  markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#58a6ff"/></marker>
+  <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#3fb950"/></marker>
+  <marker id="arr-red"   markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#f85149"/></marker>
+  <marker id="arr-purp"  markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#a371f7"/></marker>
+  <marker id="arr-yell"  markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#d29922"/></marker>
+  <marker id="arr-cyan"  markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#79c0ff"/></marker>
+  <!-- Bidirectional arrow -->
+  <marker id="arr-blue-l" markerWidth="8" markerHeight="6" refX="1" refY="3" orient="auto"><polygon points="8 0,0 3,8 6" fill="#58a6ff"/></marker>
+</defs>
+
+<!-- ═══════════════════════════════════════════ TITLE ═══════════════════════ -->
+<rect x="0" y="0" width="1400" height="68" fill="#161b22"/>
+<rect x="0" y="66" width="1400" height="2" fill="#58a6ff" opacity=".4"/>
+<text x="700" y="30" text-anchor="middle" fill="#58a6ff"  font-size="20" font-weight="700">Разпределена вградена система за термично управление на ЦД</text>
+<text x="700" y="54" text-anchor="middle" fill="#8b949e"  font-size="13">Distributed Embedded Datacenter Thermal Control System — Raspberry Pi 5   |   Hardware &amp; Software Architecture</text>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+     LEFT COLUMN — GPIO / Physical Sensors
+     x=10 … 205
+════════════════════════════════════════════════════════════════════════════ -->
+
+<!-- Section label -->
+<text x="107" y="90" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="700" letter-spacing=".1em">СЕНЗОРИ &amp; GPIO</text>
+
+<!-- BME280 -->
+<rect x="18" y="100" width="180" height="78" rx="8" fill="#132213" stroke="#3fb950" stroke-width="1.5"/>
+<text x="108" y="119" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="700">BME280</text>
+<text x="108" y="136" text-anchor="middle" fill="#8b949e" font-size="10">Температура + Влажност</text>
+<text x="108" y="151" text-anchor="middle" fill="#79c0ff" font-size="10">I²C · адрес 0x76 · 3.3V</text>
+<text x="108" y="167" text-anchor="middle" fill="#8b949e" font-size="9.5">GPIO2 (SDA) · GPIO3 (SCL)</text>
+
+<!-- DHT22 -->
+<rect x="18" y="192" width="180" height="62" rx="8" fill="#132213" stroke="#3fb950" stroke-width="1.2" stroke-dasharray="5 3"/>
+<text x="108" y="211" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="700">DHT22  <tspan fill="#8b949e" font-size="10">(алтернатива)</tspan></text>
+<text x="108" y="228" text-anchor="middle" fill="#8b949e" font-size="10">Температура + Влажност</text>
+<text x="108" y="244" text-anchor="middle" fill="#79c0ff" font-size="10">GPIO 4 (BCM) · 3.3V</text>
+
+<!-- GPIO Outputs label -->
+<text x="108" y="278" text-anchor="middle" fill="#79c0ff" font-size="11" font-weight="700" letter-spacing=".08em">GPIO ИЗХОДИ</text>
+
+<!-- Status LED -->
+<rect x="18" y="288" width="82" height="54" rx="7" fill="#111c2e" stroke="#79c0ff" stroke-width="1.2"/>
+<circle cx="38" cy="308" r="9" fill="#3fb950" opacity=".8"/>
+<text x="59" y="305" fill="#79c0ff" font-size="10" font-weight="700">Статус LED</text>
+<text x="59" y="319" fill="#8b949e" font-size="9.5">GPIO 17</text>
+<text x="59" y="333" fill="#8b949e" font-size="9">Heartbeat</text>
+
+<!-- Alarm LED -->
+<rect x="116" y="288" width="82" height="54" rx="7" fill="#2e1111" stroke="#f85149" stroke-width="1.2"/>
+<circle cx="136" cy="308" r="9" fill="#f85149" opacity=".8"/>
+<text x="156" y="305" fill="#f85149" font-size="10" font-weight="700">Алarm LED</text>
+<text x="156" y="319" fill="#8b949e" font-size="9.5">GPIO 27</text>
+<text x="156" y="333" fill="#8b949e" font-size="9">Критична T°</text>
+
+<!-- GPIO Inputs label -->
+<text x="108" y="368" text-anchor="middle" fill="#79c0ff" font-size="11" font-weight="700" letter-spacing=".08em">GPIO ВХОДОВЕ</text>
+
+<!-- Mode Button -->
+<rect x="18" y="378" width="82" height="54" rx="7" fill="#111c2e" stroke="#79c0ff" stroke-width="1.2"/>
+<text x="59" y="400" text-anchor="middle" fill="#79c0ff" font-size="10" font-weight="700">Бутон</text>
+<text x="59" y="414" text-anchor="middle" fill="#8b949e" font-size="9.5">GPIO 22</text>
+<text x="59" y="428" text-anchor="middle" fill="#8b949e" font-size="9">АВТО/РЪЧЕН</text>
+
+<!-- Fan Tach -->
+<rect x="116" y="378" width="82" height="54" rx="7" fill="#111c2e" stroke="#79c0ff" stroke-width="1.2"/>
+<text x="157" y="400" text-anchor="middle" fill="#79c0ff" font-size="10" font-weight="700">Тахометър</text>
+<text x="157" y="414" text-anchor="middle" fill="#8b949e" font-size="9.5">GPIO 23</text>
+<text x="157" y="428" text-anchor="middle" fill="#8b949e" font-size="9">Fan RPM</text>
+
+<!-- Valve Feedback -->
+<rect x="18" y="446" width="82" height="54" rx="7" fill="#111c2e" stroke="#79c0ff" stroke-width="1.2"/>
+<text x="59" y="465" text-anchor="middle" fill="#79c0ff" font-size="10" font-weight="700">Клапа 1 FB</text>
+<text x="59" y="479" text-anchor="middle" fill="#8b949e" font-size="9.5">GPIO 24</text>
+<text x="59" y="493" text-anchor="middle" fill="#8b949e" font-size="9">Лим. превк.</text>
+
+<rect x="116" y="446" width="82" height="54" rx="7" fill="#111c2e" stroke="#79c0ff" stroke-width="1.2"/>
+<text x="157" y="465" text-anchor="middle" fill="#79c0ff" font-size="10" font-weight="700">Клапа 2 FB</text>
+<text x="157" y="479" text-anchor="middle" fill="#8b949e" font-size="9.5">GPIO 25</text>
+<text x="157" y="493" text-anchor="middle" fill="#8b949e" font-size="9">Лим. превк.</text>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+     CENTER — Raspberry Pi 5 box
+     x=215 … 985
+════════════════════════════════════════════════════════════════════════════ -->
+
+<!-- RPi outer box -->
+<rect x="215" y="80" width="770" height="620" rx="14" fill="#0e1620" stroke="#58a6ff" stroke-width="2"/>
+<text x="600" y="105" text-anchor="middle" fill="#58a6ff" font-size="16" font-weight="700">🖥  Raspberry Pi 5</text>
+<text x="600" y="122" text-anchor="middle" fill="#8b949e" font-size="11">ARM Cortex-A76 · 4 GB LPDDR4X · Raspberry Pi OS 64-bit · Python 3.11</text>
+<rect x="230" y="130" width="740" height="2" fill="#58a6ff" opacity=".2"/>
+
+<!-- FastAPI box -->
+<rect x="240" y="142" width="720" height="68" rx="9" fill="#112211" stroke="#3fb950" stroke-width="1.5"/>
+<text x="600" y="163" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="700">FastAPI + Uvicorn</text>
+<text x="600" y="180" text-anchor="middle" fill="#8b949e" font-size="10.5">REST API (port 8000) · WebSocket /ws · CORS · Static Files (React build)</text>
+<text x="600" y="198" text-anchor="middle" fill="#79c0ff" font-size="10">GET /api/status  POST /api/fan  POST /api/valve  POST /api/mode  GET /api/history  POST /api/simulation  WS /ws</text>
+
+<!-- Row 1 of modules -->
+<rect x="240" y="224" width="225" height="68" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+<text x="353" y="244" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="700">sensor_reader.py</text>
+<text x="353" y="260" text-anchor="middle" fill="#8b949e" font-size="9.5">BME280 / DHT22 / Simulation</text>
+<text x="353" y="275" text-anchor="middle" fill="#8b949e" font-size="9">read() · set_override() · clear_override()</text>
+<text x="353" y="289" text-anchor="middle" fill="#79c0ff" font-size="9">I²C smbus2 · adafruit-dht</text>
+
+<rect x="480" y="224" width="225" height="68" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+<text x="593" y="244" text-anchor="middle" fill="#f85149" font-size="11" font-weight="700">modbus_control.py</text>
+<text x="593" y="260" text-anchor="middle" fill="#8b949e" font-size="9.5">Fan (3 speeds) · Valve 1 · Valve 2</text>
+<text x="593" y="275" text-anchor="middle" fill="#8b949e" font-size="9">set_fan_speed() · set_valve_recirc/exhaust()</text>
+<text x="593" y="289" text-anchor="middle" fill="#79c0ff" font-size="9">pymodbus · RS-485 /dev/ttyUSB0</text>
+
+<rect x="720" y="224" width="225" height="68" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+<text x="833" y="244" text-anchor="middle" fill="#79c0ff" font-size="11" font-weight="700">gpio_handler.py</text>
+<text x="833" y="260" text-anchor="middle" fill="#8b949e" font-size="9.5">LEDs · Button ISR · Tachometer</text>
+<text x="833" y="275" text-anchor="middle" fill="#8b949e" font-size="9">set_alarm() · get_fan_rpm() · valve_feedback()</text>
+<text x="833" y="289" text-anchor="middle" fill="#79c0ff" font-size="9">RPi.GPIO · BCM numbering</text>
+
+<!-- Control Logic box (center, prominent) -->
+<rect x="330" y="308" width="540" height="76" rx="9" fill="#1e1e10" stroke="#d29922" stroke-width="2"/>
+<text x="600" y="330" text-anchor="middle" fill="#d29922" font-size="13" font-weight="700">control_logic.py — Логика на управление</text>
+<text x="600" y="350" text-anchor="middle" fill="#8b949e" font-size="10">AUTO: T&lt;20→OFF+Recirc  |  20≤T&lt;25→LOW+Recirc  |  25≤T&lt;30→MED+Exhaust  |  T≥30→HIGH+Exhaust</text>
+<text x="600" y="368" text-anchor="middle" fill="#8b949e" font-size="10">MANUAL mode: REST API / MQTT commands  |  Airflow-fault override  |  Threshold API</text>
+
+<!-- Row 2 of modules -->
+<rect x="240" y="400" width="225" height="68" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+<text x="353" y="420" text-anchor="middle" fill="#a371f7" font-size="11" font-weight="700">mqtt_client.py</text>
+<text x="353" y="436" text-anchor="middle" fill="#8b949e" font-size="9.5">paho-mqtt · NODE_ID · QoS 1</text>
+<text x="353" y="451" text-anchor="middle" fill="#8b949e" font-size="9">publish() · subscribe cmds · reconnect</text>
+<text x="353" y="465" text-anchor="middle" fill="#a371f7" font-size="9">datacenter/{node}/status  |  .../cmd/#</text>
+
+<rect x="480" y="400" width="225" height="68" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+<text x="593" y="420" text-anchor="middle" fill="#d29922" font-size="11" font-weight="700">snmp_agent.py</text>
+<text x="593" y="436" text-anchor="middle" fill="#8b949e" font-size="9.5">pysnmp · v2c · Community: public</text>
+<text x="593" y="451" text-anchor="middle" fill="#8b949e" font-size="9">update() · _send_trap() · get_mib_info()</text>
+<text x="593" y="465" text-anchor="middle" fill="#d29922" font-size="9">1.3.6.1.4.1.54321.x.x  UDP :161/162</text>
+
+<rect x="720" y="400" width="225" height="68" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+<text x="833" y="420" text-anchor="middle" fill="#e3b341" font-size="11" font-weight="700">data_logger.py</text>
+<text x="833" y="436" text-anchor="middle" fill="#8b949e" font-size="9.5">aiosqlite · SQLite · Storage/data.db</text>
+<text x="833" y="451" text-anchor="middle" fill="#8b949e" font-size="9">log_reading() · get_readings() · statistics()</text>
+<text x="833" y="465" text-anchor="middle" fill="#e3b341" font-size="9">Tables: readings · events  |  60s interval</text>
+
+<!-- React / GUI box -->
+<rect x="240" y="484" width="720" height="68" rx="9" fill="#111827" stroke="#58a6ff" stroke-width="1.5"/>
+<text x="600" y="504" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="700">React Dashboard  (GUI/dist — served as static files)</text>
+<text x="600" y="521" text-anchor="middle" fill="#8b949e" font-size="10">Vite 5 · React 18 · Recharts · Axios · WebSocket hook</text>
+<text x="600" y="538" text-anchor="middle" fill="#79c0ff" font-size="9.5">SensorGauges · FanControl · ValveControl · AirflowStatus · ModeToggle · HistoricalChart · SimulationPanel</text>
+
+<!-- Modbus RTU module (inside RPi box, bottom) -->
+<rect x="240" y="568" width="720" height="118" rx="9" fill="#2a1010" stroke="#f85149" stroke-width="1.5"/>
+<text x="600" y="588" text-anchor="middle" fill="#f85149" font-size="12" font-weight="700">Modbus RTU RS-485 Relay Module  (Slave ID: 1 · 9600 baud · /dev/ttyUSB0)</text>
+<rect x="258" y="596" width="2" height="80" fill="#f85149" opacity=".3"/>
+
+<!-- Relay boxes inside Modbus module -->
+<rect x="262" y="598" width="86" height="52" rx="6" fill="#1e0d0d" stroke="#f85149" stroke-width="1"/>
+<text x="305" y="616" text-anchor="middle" fill="#f85149" font-size="10" font-weight="700">Relay 1</text>
+<text x="305" y="630" text-anchor="middle" fill="#8b949e" font-size="9">Coil 0</text>
+<text x="305" y="644" text-anchor="middle" fill="#e3b341" font-size="9">Fan LOW</text>
+
+<rect x="358" y="598" width="86" height="52" rx="6" fill="#1e0d0d" stroke="#f85149" stroke-width="1"/>
+<text x="401" y="616" text-anchor="middle" fill="#f85149" font-size="10" font-weight="700">Relay 2</text>
+<text x="401" y="630" text-anchor="middle" fill="#8b949e" font-size="9">Coil 1</text>
+<text x="401" y="644" text-anchor="middle" fill="#e3b341" font-size="9">Fan MEDIUM</text>
+
+<rect x="454" y="598" width="86" height="52" rx="6" fill="#1e0d0d" stroke="#f85149" stroke-width="1"/>
+<text x="497" y="616" text-anchor="middle" fill="#f85149" font-size="10" font-weight="700">Relay 3</text>
+<text x="497" y="630" text-anchor="middle" fill="#8b949e" font-size="9">Coil 2</text>
+<text x="497" y="644" text-anchor="middle" fill="#e3b341" font-size="9">Fan HIGH</text>
+
+<rect x="554" y="598" width="86" height="52" rx="6" fill="#1e0d0d" stroke="#3fb950" stroke-width="1"/>
+<text x="597" y="616" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="700">Relay 4</text>
+<text x="597" y="630" text-anchor="middle" fill="#8b949e" font-size="9">Coil 3</text>
+<text x="597" y="644" text-anchor="middle" fill="#3fb950" font-size="9">Клапа 1 Рецирк</text>
+
+<rect x="650" y="598" width="86" height="52" rx="6" fill="#1e0d0d" stroke="#3fb950" stroke-width="1"/>
+<text x="693" y="616" text-anchor="middle" fill="#3fb950" font-size="10" font-weight="700">Relay 5</text>
+<text x="693" y="630" text-anchor="middle" fill="#8b949e" font-size="9">Coil 4</text>
+<text x="693" y="644" text-anchor="middle" fill="#3fb950" font-size="9">Клапа 2 Exhaust</text>
+
+<rect x="746" y="598" width="86" height="52" rx="6" fill="#1e0d0d" stroke="#79c0ff" stroke-width="1"/>
+<text x="789" y="616" text-anchor="middle" fill="#79c0ff" font-size="10" font-weight="700">DI 0 / DI 1</text>
+<text x="789" y="630" text-anchor="middle" fill="#8b949e" font-size="9">Digital Input</text>
+<text x="789" y="644" text-anchor="middle" fill="#79c0ff" font-size="9">Airflow In/Out</text>
+
+<!-- USB label on RPi box border -->
+<text x="221" y="605" fill="#f85149" font-size="9" font-weight="700" transform="rotate(-90,221,605)">USB-RS485</text>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+     RIGHT COLUMN — Network / External
+     x=1000 … 1390
+════════════════════════════════════════════════════════════════════════════ -->
+
+<text x="1195" y="90" text-anchor="middle" fill="#a371f7" font-size="11" font-weight="700" letter-spacing=".1em">МРЕЖОВ СЛОЙ</text>
+
+<!-- React Browser -->
+<rect x="1005" y="100" width="375" height="88" rx="9" fill="#111827" stroke="#58a6ff" stroke-width="1.5"/>
+<text x="1192" y="122" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="700">🌐 Уеб браузър — React Dashboard</text>
+<text x="1192" y="141" text-anchor="middle" fill="#8b949e" font-size="10">http://&lt;RPi-IP&gt;:8000</text>
+<text x="1192" y="158" text-anchor="middle" fill="#79c0ff" font-size="10">WebSocket ws://…/ws · REST /api/*</text>
+<text x="1192" y="175" text-anchor="middle" fill="#8b949e" font-size="9">Real-time gauges · Fan control · Valve control · Simulation mode</text>
+
+<!-- MQTT Broker -->
+<rect x="1005" y="205" width="375" height="104" rx="9" fill="#1c1130" stroke="#a371f7" stroke-width="1.5"/>
+<text x="1192" y="227" text-anchor="middle" fill="#a371f7" font-size="13" font-weight="700">📡 MQTT Broker — Mosquitto</text>
+<text x="1192" y="246" text-anchor="middle" fill="#8b949e" font-size="10">TCP :1883  (TLS :8883 optional)</text>
+<text x="1192" y="263" text-anchor="middle" fill="#a371f7" font-size="9.5">datacenter/{node_id}/status  (retained JSON)</text>
+<text x="1192" y="279" text-anchor="middle" fill="#8b949e" font-size="9">sensors/temperature · sensors/humidity · actuators/fan_speed</text>
+<text x="1192" y="295" text-anchor="middle" fill="#8b949e" font-size="9">actuators/valve1 · actuators/valve2 · airflow/inlet · airflow/outlet</text>
+<text x="1192" y="302" text-anchor="middle" fill="#a371f7" font-size="9">cmd/fan_speed · cmd/valve · cmd/mode · cmd/thresholds  ← subscriptions</text>
+
+<!-- SNMP NMS -->
+<rect x="1005" y="325" width="375" height="90" rx="9" fill="#1e1800" stroke="#d29922" stroke-width="1.5"/>
+<text x="1192" y="347" text-anchor="middle" fill="#d29922" font-size="13" font-weight="700">📶 SNMP Manager (NMS)</text>
+<text x="1192" y="366" text-anchor="middle" fill="#8b949e" font-size="10">UDP :161 GET  ·  :162 Traps</text>
+<text x="1192" y="383" text-anchor="middle" fill="#d29922" font-size="9.5">Enterprise OID: 1.3.6.1.4.1.54321</text>
+<text x="1192" y="399" text-anchor="middle" fill="#8b949e" font-size="9">.1.1.0 Temp  .1.2.0 Hum  .2.1.0 Fan  .2.2.0 V1  .2.3.0 V2  .3.x AirFlow</text>
+<text x="1192" y="409" text-anchor="middle" fill="#f85149" font-size="9">Traps: .4.1 T≥30°C  |  .4.2 RH≥70%</text>
+
+<!-- Other RPi nodes -->
+<rect x="1005" y="431" width="375" height="80" rx="9" fill="#0f1e0f" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="6 3"/>
+<text x="1192" y="453" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="700">🖥 Допълнителни RPi Възли</text>
+<text x="1192" y="471" text-anchor="middle" fill="#8b949e" font-size="10">node_02, node_03 … — same software stack</text>
+<text x="1192" y="488" text-anchor="middle" fill="#a371f7" font-size="9.5">MQTT pub: datacenter/node_0x/status</text>
+<text x="1192" y="503" text-anchor="middle" fill="#a371f7" font-size="9">Shared broker · Remote command via cmd/ topics</text>
+
+<!-- SQLite -->
+<rect x="1005" y="527" width="180" height="60" rx="9" fill="#161b22" stroke="#e3b341" stroke-width="1.2"/>
+<text x="1095" y="548" text-anchor="middle" fill="#e3b341" font-size="11" font-weight="700">💾 SQLite</text>
+<text x="1095" y="564" text-anchor="middle" fill="#8b949e" font-size="9.5">Storage/data.db</text>
+<text x="1095" y="578" text-anchor="middle" fill="#8b949e" font-size="9">readings · events</text>
+
+<!-- Mosquitto install note -->
+<rect x="1200" y="527" width="180" height="60" rx="9" fill="#161b22" stroke="#a371f7" stroke-width="1.2"/>
+<text x="1290" y="548" text-anchor="middle" fill="#a371f7" font-size="11" font-weight="700">apt install</text>
+<text x="1290" y="564" text-anchor="middle" fill="#8b949e" font-size="9.5">mosquitto</text>
+<text x="1290" y="578" text-anchor="middle" fill="#8b949e" font-size="9">mosquitto-clients</text>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+     BOTTOM — Actuators
+     y=720 … 880
+════════════════════════════════════════════════════════════════════════════ -->
+
+<rect x="0" y="714" width="1400" height="2" fill="#30363d" opacity=".6"/>
+<text x="700" y="736" text-anchor="middle" fill="#8b949e" font-size="11" font-weight="700" letter-spacing=".1em">ACTUATORS &amp; OUTPUT DEVICES</text>
+
+<!-- Fan -->
+<rect x="60" y="748" width="220" height="110" rx="9" fill="#1a1c0d" stroke="#d29922" stroke-width="1.5"/>
+<text x="170" y="770" text-anchor="middle" fill="#d29922" font-size="25">🌀</text>
+<text x="170" y="796" text-anchor="middle" fill="#d29922" font-size="13" font-weight="700">Вентилатор</text>
+<text x="170" y="813" text-anchor="middle" fill="#8b949e" font-size="10">3 степени  (AC/DC)</text>
+<text x="170" y="828" text-anchor="middle" fill="#8b949e" font-size="9.5">НИСКА · СРЕДНА · ВИСОКА</text>
+<text x="170" y="843" text-anchor="middle" fill="#f85149" font-size="9">Relay 1 / 2 / 3  (one-hot)</text>
+<text x="170" y="856" text-anchor="middle" fill="#79c0ff" font-size="9">Tach → GPIO 23</text>
+
+<!-- Valve 1 -->
+<rect x="340" y="748" width="220" height="110" rx="9" fill="#0d1a0d" stroke="#3fb950" stroke-width="1.5"/>
+<text x="450" y="770" text-anchor="middle" fill="#3fb950" font-size="25">♻</text>
+<text x="450" y="796" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="700">Клапа 1 — Рециркулация</text>
+<text x="450" y="813" text-anchor="middle" fill="#8b949e" font-size="10">Въздухът се върти вътре</text>
+<text x="450" y="828" text-anchor="middle" fill="#8b949e" font-size="9.5">24 VDC моторизиран актуатор</text>
+<text x="450" y="843" text-anchor="middle" fill="#f85149" font-size="9">Relay 4  ·  Coil 3</text>
+<text x="450" y="856" text-anchor="middle" fill="#79c0ff" font-size="9">Feedback → GPIO 24</text>
+
+<!-- Valve 2 -->
+<rect x="620" y="748" width="220" height="110" rx="9" fill="#0d1a0d" stroke="#3fb950" stroke-width="1.5"/>
+<text x="730" y="770" text-anchor="middle" fill="#3fb950" font-size="25">🌬</text>
+<text x="730" y="796" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="700">Клапа 2 — Изпускане</text>
+<text x="730" y="813" text-anchor="middle" fill="#8b949e" font-size="10">Горещ въздух навън</text>
+<text x="730" y="828" text-anchor="middle" fill="#8b949e" font-size="9.5">24 VDC моторизиран актуатор</text>
+<text x="730" y="843" text-anchor="middle" fill="#f85149" font-size="9">Relay 5  ·  Coil 4</text>
+<text x="730" y="856" text-anchor="middle" fill="#79c0ff" font-size="9">Feedback → GPIO 25</text>
+
+<!-- Airflow sensors -->
+<rect x="900" y="748" width="220" height="110" rx="9" fill="#111c2e" stroke="#79c0ff" stroke-width="1.5"/>
+<text x="1010" y="770" text-anchor="middle" fill="#79c0ff" font-size="25">💨</text>
+<text x="1010" y="796" text-anchor="middle" fill="#79c0ff" font-size="13" font-weight="700">Датчик — Въздушен поток</text>
+<text x="1010" y="813" text-anchor="middle" fill="#8b949e" font-size="10">NPN/PNP дигитален изход</text>
+<text x="1010" y="828" text-anchor="middle" fill="#8b949e" font-size="9.5">DI-0 Вход  ·  DI-1 Изход</text>
+<text x="1010" y="843" text-anchor="middle" fill="#f85149" font-size="9">Modbus Discrete Inputs 0 &amp; 1</text>
+<text x="1010" y="856" text-anchor="middle" fill="#79c0ff" font-size="9">Fault override → switch to recirculation</text>
+
+<!-- Airflow sensors (GPIO) -->
+<rect x="1180" y="748" width="200" height="110" rx="9" fill="#0e1620" stroke="#58a6ff" stroke-width="1.5"/>
+<text x="1280" y="770" text-anchor="middle" fill="#58a6ff" font-size="22">🔌</text>
+<text x="1280" y="796" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="700">USB-RS485</text>
+<text x="1280" y="813" text-anchor="middle" fill="#8b949e" font-size="10">CH340 / FT232</text>
+<text x="1280" y="828" text-anchor="middle" fill="#8b949e" font-size="9.5">/dev/ttyUSB0</text>
+<text x="1280" y="843" text-anchor="middle" fill="#8b949e" font-size="9">RPi USB → Modbus A/B</text>
+<text x="1280" y="856" text-anchor="middle" fill="#f85149" font-size="9">RS-485 half-duplex</text>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+     CONNECTION LINES
+════════════════════════════════════════════════════════════════════════════ -->
+
+<!-- BME280 → RPi (I2C) -->
+<line x1="198" y1="139" x2="240" y2="215" stroke="#3fb950" stroke-width="1.8" marker-end="url(#arr-green)"/>
+<text x="208" y="170" fill="#3fb950" font-size="9" transform="rotate(-40,208,170)">I²C</text>
+
+<!-- DHT22 → RPi (GPIO4) -->
+<line x1="198" y1="223" x2="240" y2="253" stroke="#3fb950" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arr-green)"/>
+<text x="210" y="240" fill="#3fb950" font-size="9">GPIO4</text>
+
+<!-- GPIO outputs → RPi (left edge) -->
+<line x1="198" y1="315" x2="240" y2="280" stroke="#79c0ff" stroke-width="1.2" marker-end="url(#arr-cyan)"/>
+<line x1="198" y1="405" x2="240" y2="360" stroke="#79c0ff" stroke-width="1.2" marker-end="url(#arr-cyan)"/>
+
+<!-- RPi ↔ Browser (HTTP/WS) -->
+<line x1="985" y1="175" x2="1005" y2="155" stroke="#58a6ff" stroke-width="2" marker-start="url(#arr-blue-l)" marker-end="url(#arr-blue)"/>
+<text x="988" y="162" fill="#58a6ff" font-size="9">HTTP/WS</text>
+
+<!-- RPi → MQTT (TCP) -->
+<line x1="985" y1="430" x2="1005" y2="257" stroke="#a371f7" stroke-width="1.8" marker-end="url(#arr-purp)"/>
+<text x="1000" y="340" fill="#a371f7" font-size="9" transform="rotate(-70,1000,340)">MQTT TCP</text>
+
+<!-- RPi → SNMP (UDP) -->
+<line x1="985" y1="450" x2="1005" y2="375" stroke="#d29922" stroke-width="1.5" marker-end="url(#arr-yell)"/>
+<text x="1002" y="410" fill="#d29922" font-size="9" transform="rotate(-75,1002,410)">SNMP UDP</text>
+
+<!-- MQTT → Other Nodes -->
+<line x1="1192" y1="430" x2="1192" y2="431" stroke="#a371f7" stroke-width="1.5" marker-end="url(#arr-purp)"/>
+<line x1="1192" y1="309" x2="1192" y2="431" stroke="#a371f7" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arr-purp)"/>
+
+<!-- SQLite link -->
+<line x1="833" y1="468" x2="1095" y2="527" stroke="#e3b341" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arr-yell)"/>
+<text x="960" y="507" fill="#e3b341" font-size="9">DB write</text>
+
+<!-- Modbus module → Relay outputs (bottom arrows) -->
+<line x1="305" y1="686" x2="170" y2="748" stroke="#f85149" stroke-width="1.5" marker-end="url(#arr-red)"/>
+<text x="215" y="722" fill="#f85149" font-size="9">230V/24V</text>
+
+<line x1="500" y1="686" x2="450" y2="748" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arr-green)"/>
+<line x1="600" y1="686" x2="730" y2="748" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arr-green)"/>
+
+<!-- DI → Airflow sensors (up arrow from bottom) -->
+<line x1="789" y1="686" x2="1010" y2="748" stroke="#79c0ff" stroke-width="1.5" marker-end="url(#arr-cyan)"/>
+<text x="890" y="720" fill="#79c0ff" font-size="9">DI 0/1</text>
+
+<!-- USB-RS485 → Modbus module -->
+<line x1="1280" y1="748" x2="870" y2="686" stroke="#f85149" stroke-width="1.5" stroke-dasharray="6 3" marker-end="url(#arr-red)"/>
+<text x="1070" y="725" fill="#f85149" font-size="9">RS-485 A/B</text>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+     LEGEND
+════════════════════════════════════════════════════════════════════════════ -->
+
+<rect x="10" y="530" width="196" height="168" rx="7" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<text x="108" y="550" text-anchor="middle" fill="#8b949e" font-size="10" font-weight="700" letter-spacing=".06em">ЛЕГЕНДА</text>
+
+<line x1="22" y1="562" x2="60" y2="562" stroke="#3fb950"  stroke-width="2"/>
+<text x="68" y="566" fill="#8b949e" font-size="9.5">I²C / GPIO</text>
+
+<line x1="22" y1="578" x2="60" y2="578" stroke="#f85149"  stroke-width="2"/>
+<text x="68" y="582" fill="#8b949e" font-size="9.5">RS-485 / Modbus RTU</text>
+
+<line x1="22" y1="594" x2="60" y2="594" stroke="#58a6ff"  stroke-width="2"/>
+<text x="68" y="598" fill="#8b949e" font-size="9.5">HTTP / WebSocket</text>
+
+<line x1="22" y1="610" x2="60" y2="610" stroke="#a371f7"  stroke-width="2"/>
+<text x="68" y="614" fill="#8b949e" font-size="9.5">MQTT TCP</text>
+
+<line x1="22" y1="626" x2="60" y2="626" stroke="#d29922"  stroke-width="2"/>
+<text x="68" y="630" fill="#8b949e" font-size="9.5">SNMP UDP</text>
+
+<line x1="22" y1="642" x2="60" y2="642" stroke="#79c0ff"  stroke-width="2"/>
+<text x="68" y="646" fill="#8b949e" font-size="9.5">GPIO входове</text>
+
+<line x1="22" y1="658" x2="60" y2="658" stroke="#e3b341"  stroke-width="2"/>
+<text x="68" y="662" fill="#8b949e" font-size="9.5">SQLite запис</text>
+
+<line x1="22" y1="674" x2="60" y2="674" stroke="#8b949e"  stroke-width="1.5" stroke-dasharray="5 3"/>
+<text x="68" y="678" fill="#8b949e" font-size="9.5">Опционален / алтернативен</text>
+
+<line x1="22" y1="690" x2="60" y2="690" stroke="#3fb950"  stroke-width="1.8" stroke-dasharray="5 3"/>
+<text x="68" y="694" fill="#8b949e" font-size="9.5">Захранване 24V/230V</text>
+
+</svg>
+

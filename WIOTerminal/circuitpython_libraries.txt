@@ -1,0 +1,52 @@
+# circuitpython_libraries.txt
+# ─────────────────────────────────────────────────────────────────────────────
+# Files to copy from the Adafruit CircuitPython Bundle into CIRCUITPY/lib/
+#
+# Download bundle from:
+#   https://circuitpython.org/libraries
+#   (choose the bundle matching your CircuitPython version, e.g. 9.x)
+#
+# After unzipping the bundle, copy ONLY the following into CIRCUITPY/lib/:
+# ─────────────────────────────────────────────────────────────────────────────
+
+# 1.  Sensor driver  (single .mpy file)
+adafruit_sht4x.mpy
+
+# 2.  Display text library  (folder — copy the whole folder)
+adafruit_display_text/
+
+# 2b. Display driver  (single .mpy file)
+adafruit_ili9341.mpy
+
+# 3.  Bus device  (folder — dependency of adafruit_sht4x)
+adafruit_bus_device/
+
+# 4.  WiFi & HTTP  (folder — required for networking)
+adafruit_esp32spi/
+adafruit_requests.mpy
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# All other imports (board, busio, digitalio, displayio, terminalio,
+# time, math, json) are BUILT-IN to CircuitPython — no extra files needed.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Resulting CIRCUITPY layout:
+#
+#   CIRCUITPY/
+#   ├── code.py                          ← main program
+#   └── lib/
+#       ├── adafruit_sht4x.mpy
+#       ├── adafruit_bus_device/
+#       │   ├── i2c_device.mpy
+#       │   └── spi_device.mpy
+#       ├── adafruit_display_text/
+#       │   ├── __init__.mpy
+#       │   ├── label.mpy
+#       │   └── scrolling_label.mpy
+#       ├── adafruit_ili9341.mpy
+#       ├── adafruit_esp32spi/
+#       │   ├── __init__.mpy
+#       │   ├── adafruit_esp32spi.mpy
+#       │   └── adafruit_esp32spi_socketpool.mpy
+#       └── adafruit_requests.mpy

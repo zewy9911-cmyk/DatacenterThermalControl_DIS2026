@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local databases / runtime data
+Storage/*.db
+*.sqlite
+*.sqlite3
+
+# Frontend build artifacts
+GUI/node_modules/
+GUI/dist/
+
+# IDE / OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# CircuitPython mounted drive metadata / local settings copies
+WIOTerminal/circuitpy/
+settings.toml
+WIOTerminal/settings.toml
+
+# Logs
+*.log
+
